@@ -24,7 +24,13 @@ const { width } = Dimensions;
 interface Props {}
 
 export const Player: React.FC<Props> = () => {
-  const { panResponder, translateY, percent, status } = useAnimation();
+  const {
+    panResponder,
+    translateY,
+    percent,
+    status,
+    animation,
+  } = useAnimation();
 
   const container = useRef<View>();
 
@@ -66,7 +72,12 @@ export const Player: React.FC<Props> = () => {
         <Position />
 
         <View style={styles.header}>
-          <Header />
+          <Header
+            onBack={() => {
+              status.setValue(0);
+              animation();
+            }}
+          />
         </View>
 
         <View style={[styles.section, styles.slider]}>
@@ -100,6 +111,8 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     position: 'absolute',
     backgroundColor: Colors.foreground,
+
+    zIndex: 99,
   },
 
   text: {

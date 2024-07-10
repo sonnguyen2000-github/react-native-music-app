@@ -97,5 +97,5 @@ export const useAnimation = () => {
     }),
   ).current;
 
-  return { translateY, panResponder, percent, status };
+  return { translateY, panResponder, percent, status, animation };
 };

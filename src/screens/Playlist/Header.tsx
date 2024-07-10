@@ -1,15 +1,25 @@
 import React from 'react';
-import { View, StyleSheet } from 'react-native';
+import { View, StyleSheet, TouchableOpacity } from 'react-native';
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
+import { Colors } from 'src/constants';
 import { Search, Gear, DoubleQuaver } from 'src/icons';
 
-interface Props {}
+interface Props {
+  searchValue: string;
+  onSearchPress: () => void;
+}
 
-export const Header: React.FC<Props> = () => {
+export const Header: React.FC<Props> = ({ onSearchPress, searchValue }) => {
+  const insets = useSafeAreaInsets();
   return (
-    <View style={styles.container}>
-      <Search size={28} />
+    <View style={[styles.container, { top: insets.top }]}>
+      <TouchableOpacity onPress={onSearchPress}>
+        <Search size={28} fill={searchValue ? Colors.primary : undefined} />
+      </TouchableOpacity>
       <DoubleQuaver size={35} />
-      <Gear size={28} />
+      <TouchableOpacity>
+        <Gear size={28} />
+      </TouchableOpacity>
     </View>
   );
 };

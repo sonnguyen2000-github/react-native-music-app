@@ -13,11 +13,16 @@ const { width } = Dimensions.get('window');
 interface Props {
   panResponder: PanResponderInstance;
   translateX: Animated.Value;
+  lists: any[];
+  tracks: any[];
 }
 
-export const Tracks: React.FC<Props> = ({ panResponder, translateX }) => {
-  const { lists, tracks } = usePlaylist();
-
+export const Tracks: React.FC<Props> = ({
+  panResponder,
+  translateX,
+  lists,
+  tracks,
+}) => {
   return (
     <View style={styles.area}>
       <CornerShadow />

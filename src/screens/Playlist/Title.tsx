@@ -31,7 +31,7 @@ export const Title: React.FC<Props> = ({ swipeIndex }: Props) => {
 
 const styles = StyleSheet.create({
   container: {
-    height: 60,
+    height: 100,
     paddingHorizontal: 20,
     justifyContent: 'center',
   },

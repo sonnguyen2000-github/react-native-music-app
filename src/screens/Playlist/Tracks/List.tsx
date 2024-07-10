@@ -15,7 +15,9 @@ interface Props {}
 export const List: React.FC<Props> = ({ items, playlist }: Props) => {
   const { bottom } = useSafeAreaInsets();
 
-  items[items.length - 1].last = true;
+  if (items[items.length - 1]) {
+    items[items.length - 1].last = true;
+  }
 
   return (
     <FlatList
