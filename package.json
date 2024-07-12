@@ -7,15 +7,21 @@
     "ios": "react-native run-ios",
     "start": "react-native start",
     "test": "jest",
-    "lint": "eslint . --ext .js,.jsx,.ts,.tsx"
+    "lint": "eslint . --ext .js,.jsx,.ts,.tsx",
+    "postinstall": "patch-package"
   },
   "dependencies": {
+    "@react-native-community/netinfo": "9.3.5",
+    "axios": "^1.7.2",
+    "patch-package": "^8.0.0",
+    "postinstall-postinstall": "^2.1.0",
     "react": "^17.0.1",
     "react-native": "^0.63.4",
     "react-native-safe-area-context": "^3.1.9",
     "react-native-svg": "^12.1.0",
     "react-native-swift": "^1.2.3",
-    "react-native-track-player": "git+https://github.com/m-inan/react-native-track-player.git"
+    "react-native-track-player": "git+https://github.com/m-inan/react-native-track-player.git",
+    "react-native-webview": "11.25.0"
   },
   "devDependencies": {
     "@babel/core": "^7.8.4",
