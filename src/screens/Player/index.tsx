@@ -111,8 +111,6 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     position: 'absolute',
     backgroundColor: Colors.foreground,
-
-    zIndex: 99,
   },
 
   text: {

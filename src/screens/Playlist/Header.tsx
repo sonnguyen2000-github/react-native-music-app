@@ -7,9 +7,14 @@ import { Search, Gear, DoubleQuaver } from 'src/icons';
 interface Props {
   searchValue: string;
   onSearchPress: () => void;
+  onSettingPress: () => void;
 }
 
-export const Header: React.FC<Props> = ({ onSearchPress, searchValue }) => {
+export const Header: React.FC<Props> = ({
+  onSearchPress,
+  searchValue,
+  onSettingPress,
+}) => {
   const insets = useSafeAreaInsets();
   return (
     <View style={[styles.container, { top: insets.top }]}>
@@ -17,7 +22,7 @@ export const Header: React.FC<Props> = ({ onSearchPress, searchValue }) => {
         <Search size={28} fill={searchValue ? Colors.primary : undefined} />
       </TouchableOpacity>
       <DoubleQuaver size={35} />
-      <TouchableOpacity>
+      <TouchableOpacity onPress={onSettingPress}>
         <Gear size={28} />
       </TouchableOpacity>
     </View>

@@ -1,5 +1,12 @@
 import React, { useEffect, useState } from 'react';
-import { View, StyleSheet, Modal, Button, TextInput } from 'react-native';
+import {
+  View,
+  StyleSheet,
+  Modal,
+  Button,
+  TextInput,
+  CheckBox,
+} from 'react-native';
 
 import { tracks as rawTracks, playlists as rawPlaylists } from '../../../data';
 
@@ -13,6 +20,8 @@ import { Tracks } from './Tracks';
 
 import { useAnimation } from './Animation';
 import { Text, TextType } from 'src/components';
+import { setVolume } from 'react-native-track-player';
+import { ITrack } from 'src/interfaces';
 
 interface Props {}
 
@@ -26,7 +35,11 @@ export const Playlist: React.FC<Props> = () => {
   const { translateX, panResponder, index } = useAnimation(lists.length);
 
   const [str, setStr] = useState('');
-  const [dialogShow, setDialogShow] = useState(false);
+  const [searchShow, setSearchShow] = useState(false);
+  const [settingShow, setSettingShow] = useState(false);
+  const [isMuted, setIsMuted] = useState(false);
+  const [infoShow, setInfoShow] = useState(false);
+  const [info, setInfo] = useState<ITrack>();
 
   useEffect(() => {
     setAllLists(rawPlaylists);
@@ -68,18 +81,31 @@ export const Playlist: React.FC<Props> = () => {
       <Header
         searchValue={str}
         onSearchPress={() => {
-          setDialogShow(true);
+          setSearchShow(true);
+        }}
+        onSettingPress={() => {
+          setSettingShow(true);
         }}
       />
       <Title swipeIndex={index} />
       <Tabbar swipeIndex={index} />
-      <Tracks {...{ translateX, panResponder }} tracks={tracks} lists={lists} />
+      <Tracks
+        {...{ translateX, panResponder }}
+        tracks={tracks}
+        lists={lists}
+        onOptionPress={(item) => {
+          console.log({ item });
+          setInfoShow(true);
+          setInfo(item);
+        }}
+      />
 
+      {/* search */}
       <Modal
         transparent
         statusBarTranslucent
         animationType="slide"
-        visible={dialogShow}>
+        visible={searchShow}>
         <View
           style={{ justifyContent: 'center', flex: 1, alignItems: 'center' }}>
           <View
@@ -129,7 +155,107 @@ export const Playlist: React.FC<Props> = () => {
               <Button
                 title="OK"
                 onPress={() => {
-                  setDialogShow(false);
+                  setSearchShow(false);
+                }}
+              />
+            </View>
+          </View>
+        </View>
+      </Modal>
+
+      {/* settings */}
+      <Modal
+        transparent
+        statusBarTranslucent
+        animationType="slide"
+        visible={settingShow}>
+        <View
+          style={{ justifyContent: 'center', flex: 1, alignItems: 'center' }}>
+          <View
+            style={{
+              borderRadius: 20,
+              width: Dimensions.width - 20 * 2,
+              backgroundColor: Colors.white,
+              height: 200,
+              justifyContent: 'center',
+              alignItems: 'center',
+              paddingHorizontal: 20,
+              paddingVertical: 20,
+            }}>
+            <Text type={TextType.SEMIBOLD} color={Colors.black}>
+              Settings
+            </Text>
+
+            <View>
+              <CheckBox
+                value={isMuted}
+                onValueChange={(value) => {
+                  setIsMuted(value);
+
+                  if (value) {
+                    setVolume(0);
+                  } else {
+                    setVolume(1);
+                  }
+                }}
+              />
+              <Text type={TextType.REGULAR} color={Colors.black}>
+                Mute
+              </Text>
+            </View>
+
+            <View style={{ width: 80, marginTop: 20 }}>
+              <Button
+                title="OK"
+                onPress={() => {
+                  setSettingShow(false);
+                }}
+              />
+            </View>
+          </View>
+        </View>
+      </Modal>
+
+      {/* info */}
+      <Modal
+        transparent
+        statusBarTranslucent
+        animationType="slide"
+        visible={infoShow}>
+        <View
+          style={{ justifyContent: 'center', flex: 1, alignItems: 'center' }}>
+          <View
+            style={{
+              borderRadius: 20,
+              width: Dimensions.width - 20 * 2,
+              backgroundColor: Colors.white,
+              height: 200,
+              justifyContent: 'center',
+              alignItems: 'center',
+              paddingHorizontal: 20,
+              paddingVertical: 20,
+            }}>
+            <View style={{ alignItems: 'center' }}>
+              <Text
+                type={TextType.SEMIBOLD}
+                color={Colors.black}
+                style={{ textAlign: 'center' }}>
+                {info?.title ?? ''}
+              </Text>
+
+              <Text
+                type={TextType.REGULAR}
+                color={Colors.black}
+                style={{ textAlign: 'center' }}>
+                By: {info?.artist ?? ''}
+              </Text>
+            </View>
+
+            <View style={{ width: 80, marginTop: 20 }}>
+              <Button
+                title="OK"
+                onPress={() => {
+                  setInfoShow(false);
                 }}
               />
             </View>

@@ -15,6 +15,7 @@ interface Props {
   translateX: Animated.Value;
   lists: any[];
   tracks: any[];
+  onOptionPress: (item: ITrack) => void;
 }
 
 export const Tracks: React.FC<Props> = ({
@@ -22,6 +23,7 @@ export const Tracks: React.FC<Props> = ({
   translateX,
   lists,
   tracks,
+  onOptionPress,
 }) => {
   return (
     <View style={styles.area}>
@@ -36,6 +38,7 @@ export const Tracks: React.FC<Props> = ({
           {lists.map((playlist: IPlaylist, key: number) => (
             <View key={key} style={{ width }}>
               <List
+                onOptionPress={onOptionPress}
                 playlist={key}
                 // @ts-ignore
                 items={playlist.items

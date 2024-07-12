@@ -19,11 +19,13 @@ interface Props {
   item: ITrack;
   index: number;
   playlist: number;
+  onOptionPress: (item: ITrack) => void;
 }
 
 export const Item: React.FC<Props> = ({
   playlist,
   item: { id, title, artwork, artist, last, duration },
+  onOptionPress,
 }: Props) => {
   const { active, updateTrackPlayer } = usePlaylist();
 
@@ -75,9 +77,14 @@ export const Item: React.FC<Props> = ({
             {duration}
           </Text>
         </View>
-        <View style={styles.options}>
+        <TouchableOpacity
+          hitSlop={{ bottom: 10, left: 10, right: 10, top: 10 }}
+          onPress={() =>
+            onOptionPress({ id, title, artwork, artist, last, duration })
+          }
+          style={styles.options}>
           <Options size={22} />
-        </View>
+        </TouchableOpacity>
       </View>
     </TouchableOpacity>
   );
