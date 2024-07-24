@@ -81,7 +81,7 @@ export const Slider: React.FC<Props> = () => {
   return (
     <Animated.View
       style={[styles.container, { opacity, transform: [{ translateY }] }]}>
-      <Svg style={styles.svg} viewBox={`0 0 100 60`}>
+      <Svg style={styles.svg} viewBox={'0 0 100 60'}>
         <Path
           d={d}
           fill="none"
@@ -101,12 +101,12 @@ export const Slider: React.FC<Props> = () => {
           cx={circleX}
           cy={circleY}
           pointerEvents="none"
-          fill={'rgba(227, 42, 118, .3)'}
+          fill={'rgba(30, 45, 77, .3)'}
         />
         <AnimatedPath
           d={d}
           fill="none"
-          stroke={'rgba(227, 42, 118, .3)'}
+          stroke={'rgba(30, 45, 77, .3)'}
           strokeWidth={4}
           strokeDasharray={strokeDasharray}
           strokeDashoffset={strokeDashoffset}

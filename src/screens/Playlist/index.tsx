@@ -6,6 +6,7 @@ import {
   Button,
   TextInput,
   CheckBox,
+  Image,
 } from 'react-native';
 
 import { tracks as rawTracks, playlists as rawPlaylists } from '../../../data';
@@ -89,6 +90,11 @@ export const Playlist: React.FC<Props> = () => {
       />
       <Title swipeIndex={index} />
       <Tabbar swipeIndex={index} />
+      {/* <Image
+        resizeMode="contain"
+        style={{ width: Dimensions.width, height: 300 }}
+        source={require('../../../data/artworks/illustration-buddha-meditating-under-bodhi-600nw-2447268797.jpg')}
+      /> */}
       <Tracks
         {...{ translateX, panResponder }}
         tracks={tracks}

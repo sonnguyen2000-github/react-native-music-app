@@ -1,6 +1,6 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    package="com.phatgiaoappxyz.kinhcauancuukhocuunan">
+    package="com.phatgiao.nhacquanambotatchonloc">
 
     <uses-permission android:name="android.permission.INTERNET" />
 

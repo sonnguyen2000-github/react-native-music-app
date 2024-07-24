@@ -1,5 +1,5 @@
 import React, { useRef } from 'react';
-import { View, StyleSheet, Animated, Platform } from 'react-native';
+import { View, StyleSheet, Animated, Platform, Image } from 'react-native';
 
 import { Colors, Dimensions } from 'src/constants';
 
@@ -67,6 +67,17 @@ export const Player: React.FC<Props> = () => {
       <Animated.View
         ref={container}
         style={[styles.container, { transform: [{ translateY }] }]}>
+        <Image
+          resizeMode="contain"
+          source={require('../../../data/artworks/152367.jpg')}
+          style={{
+            position: 'absolute',
+            width: Dimensions.width,
+            top: -Dimensions.MINI_PLAYER_HEIGHT,
+            display: 'none',
+            opacity: 0,
+          }}
+        />
         <Handle panResponder={panResponder} />
 
         <Position />

@@ -5,6 +5,6 @@ export const Colors = {
   white: 'rgb(255, 255, 255)',
   light: 'rgb(168, 178, 177)',
   black: 'rgb(0,0,0)',
-  primary: 'rgb(227, 42, 118)',
+  primary: 'rgb(30, 45, 77)',
   blue: 'rgb(103, 213, 254)',
 };

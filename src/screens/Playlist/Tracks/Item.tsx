@@ -12,7 +12,7 @@ import {
 import { ITrack } from 'src/interfaces';
 import { Colors } from 'src/constants';
 import { usePlaylist } from 'src/provider';
-import { Text } from 'src/components';
+import { Text, TextType } from 'src/components';
 import { Options } from 'src/icons';
 
 interface Props {
@@ -56,17 +56,28 @@ export const Item: React.FC<Props> = ({
       <View style={styles.artworkContainer}>
         {artwork ? <Image source={artwork} style={styles.artwork} /> : null}
 
-        <View style={styles.artworkInlineBorder}>
+        {/* <View style={styles.artworkInlineBorder}>
           <View style={styles.artworkPoint} />
-        </View>
+        </View> */}
       </View>
 
-      <View style={[styles.content, last && { borderBottomWidth: 0 }]}>
-        <View style={styles.information}>
-          <Text size={16}>{title}</Text>
+      <View
+        style={[
+          styles.content,
+          last && { borderBottomWidth: 0 },
+          { flexShrink: 1 },
+        ]}>
+        <View style={[styles.information, { flexShrink: 1 }]}>
+          <Text style={{ flexShrink: 1 }} size={16}>
+            {title}
+          </Text>
 
           <View style={styles.artist}>
-            <Text numberOfLines={1} ellipsizeMode="tail" size={15}>
+            <Text
+              style={{ fontSize: 10, opacity: 0.7, fontStyle: 'italic' }}
+              numberOfLines={1}
+              ellipsizeMode="tail"
+              size={15}>
               {artist}
             </Text>
           </View>
@@ -92,7 +103,7 @@ export const Item: React.FC<Props> = ({
 
 const styles = StyleSheet.create({
   container: {
-    height: 100,
+    // height: 100,
     flexDirection: 'row',
     alignItems: 'center',
     paddingHorizontal: 20,
